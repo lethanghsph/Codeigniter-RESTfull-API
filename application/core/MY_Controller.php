@@ -24,9 +24,9 @@ abstract class MY_Controller extends CI_Controller
      */
     protected function responseItem($data)
     {
-        $data = array(
+        $data = [
             'data' => $data,
-        );
+        ];
         $this->response($data);
     }
 
@@ -34,12 +34,17 @@ abstract class MY_Controller extends CI_Controller
      * API response for resource collection.
      *
      * @param array $data Resource collection data.
+     * @param array $link Resource link.
      */
-    protected function responseCollection($data)
+    protected function responseCollection($data, $link = [])
     {
-        $data = array(
+        $data = [
             'data' => $data,
-        );
+        ];
+
+        if (!empty($link)) {
+            $data['link'] = $link;
+        }
         $this->response($data);
     }
 
@@ -48,11 +53,11 @@ abstract class MY_Controller extends CI_Controller
      */
     protected function responseSuccess()
     {
-        $meta = array(
-            'meta' => array(
+        $meta = [
+            'meta' => [
                 'success' => true,
-            ),
-        );
+            ]
+        ];
         $this->response($meta);
     }
 
@@ -63,13 +68,13 @@ abstract class MY_Controller extends CI_Controller
      * @param  integer $code    Http status code.
      * @param  string  $message Http status message.
      */
-    protected function responseErrors($errors = array(), $code = 422, $message = 'Unprocessable Entity')
+    protected function responseErrors($errors = [], $code = 422, $message = 'Unprocessable Entity')
     {
-        $errors = array(
+        $errors = [
             'code'    => $code,
             'message' => $message,
             'errors'  => $errors,
-        );
+        ];
         $this->response($errors, $code, $message);
     }
 }
