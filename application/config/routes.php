@@ -52,3 +52,10 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 $route['default_controller'] = 'welcome';
 $route['404_override'] = '';
 $route['translate_uri_dashes'] = FALSE;
+
+$route['api/v1/users']['get'] = 'user/index';
+$route['api/v1/users']['post'] = 'user/store';
+$route['api/v1/users/(:num)']['get'] = 'user/show/$1';
+$route['api/v1/users/(:num)']['put'] = 'user/update/1';
+$route['api/v1/users/(:num)']['patch'] = 'user/update/1';
+$route['api/v1/users/(:num)']['delete'] = 'user/destroy/1';
