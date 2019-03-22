@@ -12,6 +12,7 @@ abstract class MY_Controller extends CI_Controller
      */
     protected function response($data, $code = 200, $message = 'OK')
     {
+        header('Content-Type: application/json');
         set_status_header($code, $message);
         echo json_encode($data);
     }
